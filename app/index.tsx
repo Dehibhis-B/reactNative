@@ -7,6 +7,11 @@ import { useState } from "react";
 export default function Screen1() {
     const [isDarkTheme, setIsDarkTheme] = useState(false);
     const router = useRouter();
+    const data = {
+        nombre: 'Dehibhis',
+        apellido: 'Perez',
+        curso: 'React Native',
+    }
     
     const toggleTheme = () => {
         setIsDarkTheme((prevTheme) => !prevTheme);
@@ -19,7 +24,12 @@ export default function Screen1() {
             <Container>
                 <Title>Screen 1</Title>
                 <Button title="Toggle Theme" onPress={toggleTheme} />
-                <Button title="Go to Screen 2" onPress={() => router.push('/screen2')} />
+                <Button title="Go to Screen 2" onPress={() => router.push(
+                    {
+                        pathname: '/screen2',
+                        params: data,
+                    }
+                )} />
             </Container>
         </ThemeProvider>
     )
