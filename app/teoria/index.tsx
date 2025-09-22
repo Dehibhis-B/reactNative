@@ -1,10 +1,14 @@
 import { useRouter } from "expo-router";
-import { Button } from "react-native";
-import styled, { ThemeProvider } from "styled-components/native";
-import { darkTheme, lightTheme } from "../styles/theme";
 import { useState } from "react";
+import { Button, TouchableOpacity } from "react-native";
+import styled, { ThemeProvider } from "styled-components/native";
+import { darkTheme, lightTheme } from "../../styles/theme";
 
 export default function Screen1() {
+    const [count, setCount] = useState(0);
+    const onpress = () => setCount((c) => c + 1);
+
+
     const [isDarkTheme, setIsDarkTheme] = useState(false);
     const router = useRouter();
     const data = {
@@ -22,14 +26,17 @@ export default function Screen1() {
     return (
         <ThemeProvider theme={currentTheme}>
             <Container>
-                <Title>Screen 1</Title>
+                <TouchableOpacity onPress={onpress}>
+                 <Title>Screen 1</Title>
+                </TouchableOpacity>
                 <Button title="Toggle Theme" onPress={toggleTheme} />
                 <Button title="Go to Screen 2" onPress={() => router.push(
                     {
-                        pathname: '/screen2',
+                        pathname: '/teoria/screen2',
                         params: data,
                     }
                 )} />
+                <Title> {count}</Title>
             </Container>
         </ThemeProvider>
     )
@@ -37,6 +44,7 @@ export default function Screen1() {
 
 // ✅ CORRECTO - Con backticks y sintaxis adecuada
 const Title = styled.Text`
+    top: 110px;
     font-size: 24px;
     font-weight: bold;
     color: red;
@@ -44,6 +52,6 @@ const Title = styled.Text`
 
 // ✅ CORRECTO - Sintaxis fixed
 const Container = styled.View`
-background-color: ${({theme} ) => theme.colors.background};
+  background-color: ${({theme}) => theme.colors.background};
   flex: 1;
-`;  
+`;
