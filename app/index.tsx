@@ -34,6 +34,6 @@ const Title = styled.Text`
 
 // ✅ CORRECTO - Sintaxis fixed
 const Container = styled.View`
-  background-color: ${({ theme }) => theme.colors?.primary || '#6200ee'};
+background-color: ${({theme} ) => theme.colors.background};
   flex: 1;
-`;
+`;  
